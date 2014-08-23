@@ -3,3 +3,6 @@
 *.suo
 *.cachefile
 *.user
+
+Desktop.ini
+Thumbs.db
