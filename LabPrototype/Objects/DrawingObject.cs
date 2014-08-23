@@ -18,8 +18,10 @@ namespace LabPrototype
         public virtual void Update(Labirint labirint, GameTime gameTime)
         {
             CurrentDirection = (slide * CurrentDirection + NewDirection) / (slide + 1);
-            
-            if (CurrentDirection.Length() > Const.Epsilon) Move(labirint);
+
+            float lengthOfCurrentDirection = CurrentDirection.Length();
+
+            if (lengthOfCurrentDirection > Const.Epsilon || lengthOfCurrentDirection >= NewDirection.Length()) Move(labirint);
 
             sprite.UpdateFrame(gameTime.ElapsedGameTime.TotalSeconds);
         }
@@ -82,7 +84,7 @@ namespace LabPrototype
         }
 
         void UpdateCurrentDirection(Vector2 newPosition)
-        {
+        {            
             CurrentDirection = (newPosition - Position) / Speed;
         }
 
@@ -111,30 +113,13 @@ namespace LabPrototype
 
             if (xCellIsWall)
             {
-                if (signDirectionX == 1 && rightBorder < newPosition.X)
-                {
-                    newPosition.X = rightBorder;
-                    //CurrentDirection.X = 0;
-                }
-                else if (signDirectionX == -1 && newPosition.X < leftBorder)
-                {
-                    newPosition.X = leftBorder;
-                    //CurrentDirection.X = 0;
-                }
+                if      (signDirectionX == 1 && rightBorder < newPosition.X) newPosition.X = rightBorder;
+                else if (signDirectionX == -1 && newPosition.X < leftBorder) newPosition.X = leftBorder;
             }
-
             if (yCellIsWall)
             {
-                if (signDirectionY == 1 && downBorder < newPosition.Y)
-                {
-                    newPosition.Y = downBorder;
-                    //CurrentDirection.Y = 0;
-                }
-                else if (signDirectionY == -1 && newPosition.Y < upBorder)
-                {
-                    newPosition.Y = upBorder;
-                    //CurrentDirection.Y = 0;
-                }
+                if      (signDirectionY == 1 && downBorder < newPosition.Y) newPosition.Y = downBorder;
+                else if (signDirectionY == -1 && newPosition.Y < upBorder) newPosition.Y = upBorder;
             }
 
             if (!xCellIsWall && !yCellIsWall)
