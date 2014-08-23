@@ -14,6 +14,7 @@ namespace LabPrototype
         public static int SizeTotal = SizeLabirint * SizeRoom;
 
         public static int SizeCell = 64;
+        public static int HalfSizeCell = SizeCell / 2;
 
         public static int SizeViewX = 11;
         public static int SizeViewY = 7;

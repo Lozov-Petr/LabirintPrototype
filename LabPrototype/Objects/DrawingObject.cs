@@ -47,8 +47,14 @@ namespace LabPrototype
             int cellPositionX = GetCellX();
             int cellPositionY = GetCellY();
 
-            for (int i = cellPositionX - 1; i <= cellPositionX + 1; ++i)
-                for (int j = cellPositionY - 1; j <= cellPositionY + 1; ++j)
+            int shiftX = -1;
+            int shiftY = -1;
+
+            if (GetShiftX() > Const.HalfSizeCell) shiftX = 1;
+            if (GetShiftY() > Const.HalfSizeCell) shiftY = 1;
+
+            for (int i = cellPositionX + shiftX; i != cellPositionX - shiftX; i -= shiftX)
+                for (int j = cellPositionY + shiftY; j != cellPositionY - shiftY; j -= shiftY)
                     foreach (DrawingObject obj in labirint.labirintDraw[i, j].objects)
                     {
                         if (obj != this)
