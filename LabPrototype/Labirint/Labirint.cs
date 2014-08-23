@@ -33,15 +33,15 @@ namespace LabPrototype
 
             for (int i = 0; i < Const.SizeLabirint - 1; ++i)
             {
-                labirintLogic[0, i] = Room.GetRoadRoom(spriteBatch);
-                labirintLogic[i, Const.SizeLabirint - 1] = Room.GetRoadRoom(spriteBatch);
-                labirintLogic[Const.SizeLabirint - 1, i + 1] = Room.GetRoadRoom(spriteBatch);
-                labirintLogic[i + 1, 0] = Room.GetRoadRoom(spriteBatch);
+                labirintLogic[0, i] = Room.GetRoadRoom(spriteBatch, 0, i);
+                labirintLogic[i, Const.SizeLabirint - 1] = Room.GetRoadRoom(spriteBatch, i, Const.SizeLabirint - 1);
+                labirintLogic[Const.SizeLabirint - 1, i + 1] = Room.GetRoadRoom(spriteBatch, Const.SizeLabirint - 1, i + 1);
+                labirintLogic[i + 1, 0] = Room.GetRoadRoom(spriteBatch, i + 1, 0);
             }
 
             for (int i = 1; i < Const.SizeLabirint - 1; ++i)
                 for (int j = 1; j < Const.SizeLabirint - 1; ++j)
-                    labirintLogic[i, j] = new Room(spriteBatch);
+                    labirintLogic[i, j] = new Room(spriteBatch, i, j);
 
             WriteInCell();
         }
