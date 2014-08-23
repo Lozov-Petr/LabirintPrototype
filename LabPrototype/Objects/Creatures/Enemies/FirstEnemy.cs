@@ -25,16 +25,16 @@ namespace LabPrototype
             if (CurrentDirection.Length() < Const.Epsilon) animation = constants.animations[Animations.STAY];
             else 
             {
-                float absX = Math.Abs(CurrentDirection.X);
-                float absY = Math.Abs(CurrentDirection.Y);
+                float absX = Math.Abs(NewDirection.X);
+                float absY = Math.Abs(NewDirection.Y);
                 if (absX > absY)
                 {
-                    if (CurrentDirection.X > 0) animation = constants.animations[Animations.RIGHT];
+                    if (NewDirection.X > 0) animation = constants.animations[Animations.RIGHT];
                     else animation = constants.animations[Animations.LEFT];
                 }
                 else
                 {
-                    if (CurrentDirection.Y > 0) animation = constants.animations[Animations.DOWN];
+                    if (NewDirection.Y > 0) animation = constants.animations[Animations.DOWN];
                     else animation = constants.animations[Animations.UP];
                 }
  
