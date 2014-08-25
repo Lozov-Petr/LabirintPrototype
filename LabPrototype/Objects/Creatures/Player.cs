@@ -14,7 +14,7 @@ namespace LabPrototype
         public Player(SpriteBatch spriteBatch, Vector2 playerPosition)
         {
             constants = ObjectConstans.PlayerConstans;
-            sprite = new Sprite(texture, spriteBatch, constants.frameCount, constants.frameStringCount, constants.frameRowCount, constants.framesPerSec);
+            sprite = new Sprite(texture, spriteBatch, constants.frameStringCount, constants.frameRowCount, constants.framesPerSec);
             Position = playerPosition;
         }
         
@@ -42,14 +42,13 @@ namespace LabPrototype
             /////
             //Primitives.AddRectangle(new Rectangle((int)(Position.X - GetShiftX() - screenVector.X), (int)(Position.Y - GetShiftY() - screenVector.Y), 64, 64), Color.Red);
             /////
-
-            sprite.DrawAnimation(animation, Position - screenVector, constants.color, constants.shiftForDrawing, Depth: (float)Position.Y / (float)(Const.SizeCell * Const.SizeTotal));
+            sprite.Draw(animation, Position - screenVector, constants.color, constants.shiftForDrawing, Depth: (float)Position.Y / (float)(Const.SizeCell * Const.SizeTotal));
         }
 
-        public override void Update(Labirint labirint, GameTime gameTime)
+        public override void Update(Labirint labirint)
         {
 
-            base.Update(labirint, gameTime);
+            base.Update(labirint);
         }
     }
 }

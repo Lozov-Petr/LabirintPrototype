@@ -60,7 +60,7 @@ namespace LabPrototype
             screenZeroCellX = camera.GetCellX() - Const.SizeViewX / 2;
             screenZeroCellY = camera.GetCellY() - Const.SizeViewY / 2;
 
-            Vector2 screenVector = camera.Position - new Vector2(ResolutionOfScreen.GetVWidth() / 2, ResolutionOfScreen.GetVHeight() / 2);
+            Vector2 screenVector = camera.Position - new Vector2(ResolutionOfScreen.VirtualWidth / 2, ResolutionOfScreen.VirtualHeight / 2);
 
             // Вывод клеток
             for (int i = 0; i < Const.SizeViewX; ++i)
@@ -72,16 +72,16 @@ namespace LabPrototype
             foreach (DrawingObject obj in objects) obj.Draw(screenVector); 
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             // Обновление клеток
             for (int i = 0; i < Const.SizeViewX; ++i)
                 for (int j = 0; j < Const.SizeViewY; ++j)
                     if (screenZeroCellX + i >= 0 && screenZeroCellY + j >= 0)
-                    labirintDraw[screenZeroCellX + i, screenZeroCellY + j].Update(gameTime);
+                    labirintDraw[screenZeroCellX + i, screenZeroCellY + j].Update();
 
             // Обновление объектов
-            foreach (DrawingObject obj in objects) obj.Update(this, gameTime); 
+            foreach (DrawingObject obj in objects) obj.Update(this); 
 
             // Обновление камеры
             camera.Update(player.Position);

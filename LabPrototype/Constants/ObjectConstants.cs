@@ -8,7 +8,6 @@ namespace LabPrototype
 {
     class ObjectConstans
     {
-        public int frameCount;
         public int frameStringCount;
         public int frameRowCount;
         public int framesPerSec;
@@ -23,7 +22,6 @@ namespace LabPrototype
         {
             ObjectConstans objConst = new ObjectConstans();
 
-            objConst.frameCount = 16;
             objConst.frameStringCount = 4;
             objConst.frameRowCount = 4;
             objConst.framesPerSec = 5;

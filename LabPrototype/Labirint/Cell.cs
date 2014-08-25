@@ -26,7 +26,7 @@ namespace LabPrototype
 
         public Cell(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteWithBlocks = new Sprite(texture, spriteBatch, ConstCell.frameCount, ConstCell.frameStringCount, ConstCell.frameRowCount, ConstCell.framesPerSec);
+            spriteWithBlocks = new Sprite(texture, spriteBatch, ConstCell.frameStringCount, ConstCell.frameRowCount, ConstCell.framesPerSec);
             
             angleLU = position;
             angleRU = position;
@@ -51,7 +51,7 @@ namespace LabPrototype
             spriteWithBlocks.Draw(indexFrame, screenPosition, ConstCell.color, Vector2.Zero, Depth: 0);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             //TODO
         }

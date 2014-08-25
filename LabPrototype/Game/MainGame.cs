@@ -28,7 +28,7 @@ namespace LabPrototype
 
         protected override void Initialize()
         {
-            Primitives.Init(GraphicsDevice, 640, 360);
+            Primitives.Init(GraphicsDevice, Const.VirtualWidth, Const.VirtualHeight);
             base.Initialize();
         }
 
@@ -37,7 +37,7 @@ namespace LabPrototype
             spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadTexture.Load(Content);
             labirint = Labirint.Generate(spriteBatch);
-            ResolutionOfScreen.Init(ref graphics, ref spriteBatch, 1920, 1080, 640, 360, !false, false, true);
+            ResolutionOfScreen.Init(ref graphics, ref spriteBatch, 1920, 1080, Const.VirtualWidth, Const.VirtualHeight, false, false, true);
             debugFont = Content.Load<SpriteFont>(ContentNames.Font);
         }
 
@@ -47,25 +47,27 @@ namespace LabPrototype
 
         protected override void Update(GameTime gameTime)
         {
+            FrameRateCounter.BeginUpdate();
             GetValueKeyboard();
 
-            labirint.Update(gameTime);
-
+            labirint.Update();
+            FrameRateCounter.EndUpdate();
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
-        {   
+        {
+            
             ResolutionOfScreen.BeginDraw();
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             labirint.Draw();
 
-            spriteBatch.DrawString(debugFont, String.Format("FPS: {0}, Sprites: {1},\nCell: {2},{3}\nShift: {4},{5}", FrameRateCounter.FPS, Sprite.CountSprite, labirint.player.GetCellX(), labirint.player.GetCellY(), labirint.player.GetShiftX(), labirint.player.GetShiftY()), new Vector2(20, 20), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            spriteBatch.DrawString(debugFont, String.Format("FPS: {0} \nTime for drawing: {1} ms\nTime for updating: {2} ms\nSprites: {3}\nCell: {4},{5}\nShift: {6},{7} ", FrameRateCounter.FPS, FrameRateCounter.timeForDraw, FrameRateCounter.timeForUpdate, Sprite.CountDrawingSprite, labirint.player.GetCellX(), labirint.player.GetCellY(), labirint.player.GetShiftX(), labirint.player.GetShiftY()), new Vector2(20, 20), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
 
             /////
             //foreach (DrawingObject obj in labirint.objects)
-            //    Primitives.AddCircle(obj.Position - (labirint.camera.Position - new Vector2(ResolutionOfScreen.GetVWidth() / 2, ResolutionOfScreen.GetVHeight() / 2)), obj.constants.collisionRadius, Color.Pink);
+            //    Primitives.AddCircle(obj.Position - (labirint.camera.Position - new Vector2(ResolutionOfScreen.VirtualWidth / 2, ResolutionOfScreen.VirtualHeight / 2)), obj.constants.collisionRadius, Color.Pink);
             /////
 
             spriteBatch.End();
@@ -73,7 +75,6 @@ namespace LabPrototype
             Primitives.Draw(ref graphics, ref spriteBatch);
 
             ResolutionOfScreen.EndDraw();
-
             FrameRateCounter.Update(gameTime);
 
             base.Draw(gameTime);
