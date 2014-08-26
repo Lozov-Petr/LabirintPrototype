@@ -14,7 +14,7 @@ namespace LabPrototype
         public FirstEnemy(SpriteBatch spriteBatch, Vector2 position)
         {
             constants = ObjectConstans.GetPlayerConstans();
-            sprite = new Sprite(texture, spriteBatch, constants.frameCount, constants.frameStringCount, constants.frameRowCount, constants.framesPerSec);
+            sprite = new Sprite(texture, spriteBatch, constants.frameStringCount, constants.frameRowCount, constants.framesPerSec);
             Position = position;
         }
         
@@ -44,15 +44,15 @@ namespace LabPrototype
             /////
 
             float scale = (float)constants.collisionRadius / 8f;
-            sprite.DrawAnimation(animation, Position - screenVector, constants.color, constants.shiftForDrawing, ScaleX: scale, ScaleY: scale, Depth: (float)Position.Y / (float)(Const.SizeCell * Const.SizeTotal));
+            sprite.Draw(animation, Position - screenVector, constants.color, constants.shiftForDrawing, ScaleX: scale, ScaleY: scale, Depth: (float)Position.Y / (float)(Const.SizeCell * Const.SizeTotal));
         }
 
-        public override void Update(Labirint labirint, GameTime gameTime)
+        public override void Update(Labirint labirint)
         {
             NewDirection = labirint.player.Position - Position;
             if (NewDirection != Vector2.Zero) NewDirection.Normalize();
 
-            base.Update(labirint, gameTime);
+            base.Update(labirint);
         }
 
     }

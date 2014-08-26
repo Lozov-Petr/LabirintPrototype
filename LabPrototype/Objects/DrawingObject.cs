@@ -15,7 +15,7 @@ namespace LabPrototype
 
         abstract public void Draw(Vector2 screenVector);
 
-        public virtual void Update(Labirint labirint, GameTime gameTime)
+        public virtual void Update(Labirint labirint)
         {
             CurrentDirection = (slide * CurrentDirection + NewDirection) / (slide + 1);
 
@@ -23,7 +23,7 @@ namespace LabPrototype
 
             if (lengthOfCurrentDirection > Const.Epsilon || lengthOfCurrentDirection >= NewDirection.Length()) Move(labirint);
 
-            sprite.UpdateFrame(gameTime.ElapsedGameTime.TotalSeconds);
+            sprite.UpdateFrame();
         }
 
         public void Move(Labirint labirint)

@@ -23,7 +23,7 @@ namespace LabPrototype
             sprite.Draw(0, Position - screenVector, constants.color, constants.shiftForDrawing, Depth: (float)Position.Y / (float)(Const.SizeCell * Const.SizeTotal));
         }
 
-        public override void Update(Labirint labirint, GameTime gameTime)
+        public override void Update(Labirint labirint)
         {
             
         }
