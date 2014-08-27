@@ -21,7 +21,7 @@ namespace LabPrototype
 
             float lengthOfCurrentDirection = CurrentDirection.Length();
 
-            if (lengthOfCurrentDirection > Const.Epsilon || lengthOfCurrentDirection >= NewDirection.Length()) Move(labirint);
+            if (lengthOfCurrentDirection > Const.Epsilon || lengthOfCurrentDirection > NewDirection.Length() + Const.Epsilon) Move(labirint);
 
             sprite.UpdateFrame();
         }
@@ -84,7 +84,8 @@ namespace LabPrototype
         }
 
         void UpdateCurrentDirection(Vector2 newPosition)
-        {            
+        {
+
             CurrentDirection = (newPosition - Position) / Speed;
         }
 
