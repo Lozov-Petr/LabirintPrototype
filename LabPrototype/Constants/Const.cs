@@ -31,5 +31,9 @@ namespace LabPrototype
         public static int framesPerSec = 0;
         public static Color color = Color.White;
     }
+    class ConstCamera
+    {
+        public static int CountStep = 10;
+    }
 }
 
