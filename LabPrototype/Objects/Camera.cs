@@ -15,7 +15,8 @@ namespace LabPrototype
 
         public void Update(Vector2 newPosition)
         {
-            Position += (newPosition - Position) / 10;
+            Vector2 step = (newPosition - Position) / ConstCamera.CountStep;
+            if (step.Length() > Const.Epsilon) Position += step;
         }
 
     }
