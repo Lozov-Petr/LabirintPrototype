@@ -16,10 +16,10 @@ namespace LabPrototype
         public static int SizeCell = 64;
         public static int HalfSizeCell = SizeCell / 2;
 
-        public static int SizeViewX = 11;
-        public static int SizeViewY = 7;
         public static int VirtualWidth = 640;
         public static int VirtualHeight = 360;
+        public static int SizeViewX = (int)Math.Ceiling((float)VirtualWidth / (float)SizeCell) + 2;
+        public static int SizeViewY = (int)Math.Ceiling((float)VirtualHeight / (float)SizeCell) + 2;
 
         public static float Epsilon = 0.2f;
     }
