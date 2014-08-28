@@ -8,5 +8,10 @@ namespace LabPrototype
     class Inventory
     {
         List<Item> items = new List<Item>();
+
+        public void Add(Item item)
+        {
+            items.Add(item);
+        }
     }
 }
