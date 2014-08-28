@@ -91,6 +91,12 @@ namespace LabPrototype
             if (state.IsKeyDown(ConstControl.Up)) newDirection.Y--;
             if (state.IsKeyDown(ConstControl.Down)) newDirection.Y++;
 
+            if (state.IsKeyDown(Keys.Space))
+            {
+                var rnd = new Random();
+                labirint.player.Position = new Vector2(rnd.Next(1280, 2560), rnd.Next(1280, 2560));
+            }
+
             if (newDirection == Vector2.Zero) labirint.player.NewDirection = Vector2.Zero;
             else labirint.player.NewDirection = Vector2.Normalize(newDirection);
 
