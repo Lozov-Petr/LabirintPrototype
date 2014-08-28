@@ -11,11 +11,14 @@ namespace LabPrototype
     {
         public static Texture2D texture;
 
+        public Inventory inventory;
+
         public Player(SpriteBatch spriteBatch, Vector2 playerPosition)
         {
             constants = ObjectConstans.PlayerConstans;
             sprite = new Sprite(texture, spriteBatch, constants.frameStringCount, constants.frameRowCount, constants.framesPerSec);
             Position = playerPosition;
+            inventory = new Inventory();
         }
         
         public override void Draw(Vector2 screenVector)
