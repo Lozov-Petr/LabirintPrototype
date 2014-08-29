@@ -68,19 +68,51 @@ namespace LabPrototype
                     {
                         if (obj != this)
                         {
-                            int summOfRadiuses = this.constants.collisionRadius + obj.constants.collisionRadius;
-                            Vector2 difference = newPosition - obj.Position;
-                            if (difference.Length() < summOfRadiuses)
+                            var objAsItem     = obj as Item;
+                            var objAsCreature = obj as Creature;
+                            var objAsPlayer   = obj as Player;
+
+                            var thisAsItem     = this as Item;
+                            var thisAsCreature = this as Creature;
+                            var thisAsPlayer   = this as Player;
+
+                            if (objAsItem != null && thisAsItem != null || objAsCreature != null && thisAsCreature != null)
                             {
-                                if (difference != Vector2.Zero)
+                                int summOfRadiuses = this.constants.collisionRadius + obj.constants.collisionRadius;
+                                Vector2 difference = newPosition - obj.Position;
+                                if (difference.Length() < summOfRadiuses)
                                 {
-                                    difference.Normalize();
-                                    Vector2 newPosition1 = obj.Position + difference * summOfRadiuses;
-                                    Vector2 newPosition2 = obj.Position - difference * summOfRadiuses;
-                                    if ((Position - newPosition1).Length() < (Position - newPosition2).Length()) newPosition = newPosition1;
-                                    else newPosition = newPosition2;
+                                    if (difference != Vector2.Zero)
+                                    {
+                                        difference.Normalize();
+                                        Vector2 newPosition1 = obj.Position + difference * summOfRadiuses;
+                                        Vector2 newPosition2 = obj.Position - difference * summOfRadiuses;
+                                        if ((Position - newPosition1).Length() < (Position - newPosition2).Length()) newPosition = newPosition1;
+                                        else newPosition = newPosition2;
+                                    }
+                                    else newPosition = Position;
                                 }
-                                else newPosition = Position;
+                            }
+                            else if (thisAsPlayer != null && objAsItem != null)
+                            {
+                                int summOfRadiuses = this.constants.collisionRadius + obj.constants.collisionRadius;
+                                Vector2 difference = newPosition - obj.Position;
+                                if (difference.Length() < summOfRadiuses)
+                                {
+                                    thisAsPlayer.inventory.Add(objAsItem);
+                                    labirint.objects.Remove(obj);
+                                }
+
+                            }
+                            else if (thisAsItem != null && objAsPlayer != null)
+                            {
+                                int summOfRadiuses = this.constants.collisionRadius + obj.constants.collisionRadius;
+                                Vector2 difference = newPosition - obj.Position;
+                                if (difference.Length() < summOfRadiuses)
+                                {
+                                    objAsPlayer.inventory.Add(thisAsItem);
+                                    labirint.objects.Remove(this);
+                                }
                             }
                         }
                     }
