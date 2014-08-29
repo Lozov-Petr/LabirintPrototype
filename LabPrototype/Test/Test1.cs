@@ -52,13 +52,11 @@ namespace LabPrototype.Test
                 a.Speed = rnd.Next(2, 4);
                 a.constants.collisionRadius = rnd.Next(3, 16);
                 a.constants.color = new Color(rnd.Next(40, 200), rnd.Next(40, 200), rnd.Next(40, 200));
-                lab.objects.Add(a);
-
-
-
-                //lab.objects.Add(new FirstItem(spriteBatch, lab.player.Position));
-
+                lab.objects.Add(a);   
             }
+
+            //lab.objects.Add(new FirstItem(spriteBatch, lab.player.Position));
+
             return lab;
         }
     }
