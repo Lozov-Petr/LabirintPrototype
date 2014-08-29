@@ -112,6 +112,7 @@
     <Compile Include="Objects\Creatures\Enemies\FirstEnemy.cs" />
     <Compile Include="Objects\Creatures\Enemy.cs" />
     <Compile Include="Game\LoadTexture.cs" />
+    <Compile Include="Objects\Items\Ingredient.cs" />
     <Compile Include="Objects\Items\Item.cs" />
     <Compile Include="Objects\Items\FirstItem.cs" />
     <Compile Include="Objects\Camera.cs" />
