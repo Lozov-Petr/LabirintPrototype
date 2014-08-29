@@ -81,7 +81,8 @@ namespace LabPrototype
                     labirintDraw[screenZeroCellX + i, screenZeroCellY + j].Update();
 
             // Обновление объектов
-            foreach (DrawingObject obj in objects) obj.Update(this); 
+            var localObjects = new List<DrawingObject>(objects);
+            foreach (DrawingObject obj in localObjects) obj.Update(this); 
 
             // Обновление камеры
             camera.Update(player.Position);
