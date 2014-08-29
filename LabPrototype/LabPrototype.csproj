@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ObjectConstants.cs" />
+    <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Objects\Creatures\Enemies\FirstEnemy.cs" />
     <Compile Include="Objects\Creatures\Enemy.cs" />
     <Compile Include="Game\LoadTexture.cs" />
