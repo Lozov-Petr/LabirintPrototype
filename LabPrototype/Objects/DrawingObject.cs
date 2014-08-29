@@ -64,7 +64,7 @@ namespace LabPrototype
 
             for (int i = cellPositionX + shiftX; i != cellPositionX - shiftX; i -= shiftX)
                 for (int j = cellPositionY + shiftY; j != cellPositionY - shiftY; j -= shiftY)
-                    foreach (DrawingObject obj in labirint.labirintDraw[i, j].objects)
+                    foreach (DrawingObject obj in new List<DrawingObject>(labirint.labirintDraw[i, j].objects))
                     {
                         if (obj != this)
                         {
@@ -101,6 +101,7 @@ namespace LabPrototype
                                 {
                                     thisAsPlayer.inventory.Add(objAsItem);
                                     labirint.objects.Remove(obj);
+                                    labirint.labirintDraw[i, j].objects.Remove(obj);
                                 }
 
                             }
@@ -112,6 +113,7 @@ namespace LabPrototype
                                 {
                                     objAsPlayer.inventory.Add(thisAsItem);
                                     labirint.objects.Remove(this);
+                                    labirint.labirintDraw[i, j].objects.Remove(this);
                                 }
                             }
                         }
