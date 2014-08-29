@@ -16,5 +16,11 @@ namespace LabPrototype
         public int SpeedOfShut;
         public int RangeOfShut;
         public int StrengthOfShut;
+
+        protected void Death(Labirint labirint)
+        {
+            labirint.objects.Remove(this);
+            labirint.objects.AddRange(items);
+        }
     }
 }
