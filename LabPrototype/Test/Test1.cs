@@ -55,6 +55,16 @@ namespace LabPrototype.Test
                 lab.objects.Add(a);   
             }
 
+             for (int i = 0; i < 100; ++i)
+            {
+                var a = new FirstItem(spriteBatch, new Vector2(rnd.Next(20 * 64, 40 * 64), rnd.Next(20 * 64, 40 * 64)));
+                a.Speed = rnd.Next(2, 4);
+                a.constants.collisionRadius = 32;
+                a.constants.shiftForDrawing = new Vector2(32, 32);
+                a.constants.color = new Color(rnd.Next(40, 200), rnd.Next(40, 200), rnd.Next(40, 200));
+                lab.objects.Add(a);   
+            }
+
             //lab.objects.Add(new FirstItem(spriteBatch, lab.player.Position));
 
             return lab;

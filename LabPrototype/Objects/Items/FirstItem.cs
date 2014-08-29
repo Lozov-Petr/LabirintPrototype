@@ -13,7 +13,7 @@ namespace LabPrototype
 
         public FirstItem(SpriteBatch spriteBatch, Vector2 position)
         {
-            constants = ObjectConstans.PlayerConstans;
+            constants = ObjectConstans.GetPlayerConstans();
             Position = position;
             sprite = new Sprite(texture, spriteBatch);
         }
