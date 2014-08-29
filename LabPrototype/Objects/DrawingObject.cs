@@ -11,7 +11,14 @@ namespace LabPrototype
     {
         internal Sprite sprite;
 
+        public List<Item> items;
+
         public ObjectConstans constants;
+
+        public DrawingObject()
+        {
+            items = new List<Item>();
+        }
 
         abstract public void Draw(Vector2 screenVector);
 
@@ -85,7 +92,6 @@ namespace LabPrototype
 
         void UpdateCurrentDirection(Vector2 newPosition)
         {
-
             CurrentDirection = (newPosition - Position) / Speed;
         }
 
